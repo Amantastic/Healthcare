@@ -1,6 +1,7 @@
 package com.medislot.appointment.Service;
 
 
+import com.medislot.appointment.Dto.AdminDto;
 import com.medislot.appointment.Entity.Admin;
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
@@ -10,7 +11,7 @@ import java.util.List;
 
 
 public interface AdminService {
-    Admin registerAdmin(Admin admin);
+    Admin registerAdmin(AdminDto adminDto);
     Admin getAdminById(Long id);
     List<Admin> getAllAdmins();
     void deleteAdmin(Long id);

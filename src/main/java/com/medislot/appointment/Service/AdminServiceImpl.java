@@ -1,5 +1,6 @@
 package com.medislot.appointment.Service;
 
+import com.medislot.appointment.Dto.AdminDto;
 import com.medislot.appointment.Entity.Admin;
 import com.medislot.appointment.Repository.AdminRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +14,11 @@ public class AdminServiceImpl implements AdminService {
     private final AdminRepository adminRepository;
 
     @Override
-    public Admin registerAdmin(Admin admin) {
+    public Admin registerAdmin(AdminDto dto) {
+        Admin admin = new Admin();
+        admin.setName(dto.getName());
+        admin.setEmail(dto.getEmail());
+        admin.setPassword(dto.getPassword());
         return adminRepository.save(admin);
     }
 
