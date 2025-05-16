@@ -1,9 +1,11 @@
 package com.medislot.appointment.Controller;
 
 import com.medislot.appointment.Dto.AdminDto;
+import com.medislot.appointment.Dto.AdminLoginDto;
 import com.medislot.appointment.Entity.Admin;
 import com.medislot.appointment.Service.AdminService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +24,17 @@ public class AdminController {
     @PostMapping("/register")
     public ResponseEntity<Admin> registerAdmin(@RequestBody AdminDto dto) {
         return ResponseEntity.ok(adminService.registerAdmin(dto));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody AdminLoginDto dto) {
+        boolean isLoggedIn = adminService.loginAdmin(dto.getEmail(), dto.getPassword());
+
+        if (isLoggedIn) {
+            return ResponseEntity.ok("Admin login successful ✅");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("❌ Invalid credentials");
+        }
     }
 
     // ✅ Get a single admin (admin-only)
