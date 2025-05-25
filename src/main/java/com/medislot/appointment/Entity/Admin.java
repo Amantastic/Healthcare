@@ -22,6 +22,8 @@ public class Admin {
     private String email;
     private String name;
     private String password;
+    private String profilePicture;
+
 
 //    private String role = "ADMIN";
 

@@ -19,14 +19,16 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
+                                "/api/uploads/**",
                                 "/api/users/register",
                                 "/api/users/login",
+                                "/api/admin/register",
+                                "/api/admin/login",
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
                                 "/swagger-resources/**",
-                                "/webjars/**",
-                                "/api/admin/register",
-                                "/api/admin/login"
+                                "/webjars/**"
+
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
@@ -36,7 +38,29 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
+
         return new BCryptPasswordEncoder();
     }
 
 }
+
+//
+//"/api/users/register",
+//        "/api/users/login",
+//        "/api/admin/register",
+//        "/api/admin/login",
+//        "/api/uploads/**",
+//        "/swagger-ui/**",
+//        "/v3/api-docs/**",
+//        "/swagger-resources/**",
+//        "/webjars/**"
+
+//api/users/register",
+//        "/api/users/login",
+//        "/swagger-ui/**",
+//        "/v3/api-docs/**",
+//        "/swagger-resources/**",
+//        "/webjars/**",
+//        "/api/admin/register",
+//        "/api/admin/login",
+//        "/api/uploads/**"
